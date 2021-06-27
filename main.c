@@ -71,9 +71,9 @@ static void read_write (const char *name, int in, int out)
   int rc;
 
   rc = read(in, input, sizeof input);
-  if (rc < 0)
+  if (rc <= 0)
     {
-      if (errno == EIO)
+      if (errno != EIO)
 	exit (0);
 
       fatal("Error %d on read %s", errno, name);
